@@ -1,60 +1,47 @@
-# Arcade: Week 10 starter (S10)
+# Lab 10 - Dynamic Memory in Classes
 
-A text-game arcade in C++20. This is the starting point for **Lab 10: Dynamic Memory in Classes (Blackjack I)**.
+## About This Project
 
-## What is already here
+This is my Lab 10 project for C++ Programming Fundamentals II.
 
-| Part | Files | Notes |
-| --- | --- | --- |
-| Menu | `src/main.cpp`, `src/input.*` | Hangman, Dungeon, Blackjack, Minesweeper, Quit |
-| Lab 10 | `src/card.*`, `src/deck.*`, `src/blackjack.*`, `tests/test_deck.cpp` | `Card` is finished; four `Deck` functions are yours |
-| Debugging practice | `gdb/buggy_rooms.cpp`, `gdb/deck_bugs.cpp` | Not built by default |
-| Notes to fill in | `GDB_LOG.md`, `READ_ALONG_NOTES.md` | See below |
+In this lab, I worked on a Deck class for a Blackjack game. The main goal was to learn how dynamic memory works in C++ and how to copy objects correctly.
 
-The Blackjack menu entry runs the Lab 10 demonstration. Until you finish `Deck`, it tells you the deck is empty.
+## What the Program Does
 
-## Build and run
+- Creates a deck of cards
+- Shuffles the deck
+- Deals five cards
+- Makes a copy of the deck
+- Shuffles the copied deck without changing the original
 
-```
-cmake -S . -B build                  # Debug build, -g included
+## What I Learned
+
+- Using `new[]` and `delete[]`
+- Constructors and destructors
+- Copy constructors
+- Assignment operators
+- Deep copying and shallow copying
+- Basic debugging with GDB
+
+## How to Run
+
+```bash
+cmake -S . -B build
 cmake --build build
 ./build/arcade
 ```
 
-With AddressSanitizer (use a separate folder):
+## How to Test
 
-```
-cmake -S . -B build-asan -DENABLE_ASAN=ON
-cmake --build build-asan
-./build-asan/arcade
-```
-
-Tests:
-
-```
-cd build && ctest --output-on-failure
+```bash
+cd build
+ctest --output-on-failure
 ```
 
-The first run downloads GoogleTest with git, so it needs network access. The six `DeckTest` checks fail until `Deck` is finished. That is expected.
+## Files
 
-Documentation (needs `doxygen`): `cmake --build build --target docs`, then open `docs/html/index.html`.
-
-The debugging programs:
-
-```
-cmake --build build --target buggy_rooms deck_bugs
-```
-
-## Your Lab 10 tasks
-
-1. In `src/deck.cpp`, write `Deck()`, `~Deck()`, the copy constructor, and `operator=` (safe against `d = d`).
-2. In `src/deck.h`, write the class invariant comment and the self-assignment comment where the `TODO` markers are, and mark every method that does not change the deck `const`. Change the declaration in the header and the definition in `deck.cpp` together.
-3. Part A and Part B of `GDB_LOG.md` (see the file).
-4. Diagrams and flowcharts as described in the lab handout.
-5. Commit with Conventional Commit messages, composed in the editor.
-
-## Rules for this project
-
-- Build with no warnings under `-Wall -Wextra`.
-- Allowed headers: `<iostream>`, `<iomanip>`, `<string>`, `<fstream>`, `<stdexcept>`, `<random>`. No standard containers or `<algorithm>`. No `using namespace std;`.
-- Names: `underscore_separated` functions and variables, `Capitalized` types, private data members end in `_`, enumerators are lowercase, no ALL_CAPS constants.
+- `deck.cpp` — Deck functions
+- `deck.h` — Deck class
+- `blackjack.cpp` — Blackjack demonstration
+- `GDB_LOG.md` — Debugging notes
+- `DIAGRAMS.md` — Memory diagrams and flowcharts
